@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { ChakraProvider, extendTheme, Container } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
+
 import type { TTrip } from "./domain/types";
-import "@fontsource/nunito/latin.css";
 import { Trips } from "./components/Trips";
+import { TripSkeletons } from "./components/TripSkeletons";
+
+import "@fontsource/nunito/latin.css";
 
 const getTrips = async (): Promise<Array<TTrip>> => {
   const response = await fetch("/api/trips");
@@ -15,12 +18,10 @@ const getTrips = async (): Promise<Array<TTrip>> => {
   }
 };
 
-const TripSkeletons = () => <div>Loading...</div>;
-
 const App = () => {
-  // perhaps controversial usage of null as indirect "isLoading" indicator
-  // for larger scale projects in react I would rely on redux toolkit for this kind of state management
-  // but for this scale of an exercise this will be better?
+  // perhaps controversial usage of null as indirect "isLoading" status holder,
+  // for larger scale react projects I would rely on redux toolkit for this kind of state management
+  // but for this scale of an exercise - I believe this will do just fine
 
   const [trips, setTrips] = useState<Array<TTrip> | null>(null);
   const isLoading = trips === null;
@@ -28,7 +29,7 @@ const App = () => {
   useEffect(() => {
     getTrips()
       .then(setTrips)
-      .catch(() => console.warn("api seems unavailable - render error"));
+      .catch(() => console.warn("api seems unavailable - todo: render error"));
   }, []);
 
   const theme = extendTheme({

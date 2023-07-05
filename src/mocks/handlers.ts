@@ -3,6 +3,9 @@ import trips from "./trips.json";
 
 export const handlers = [
   rest.get("/api/trips", (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(trips));
+    const params = new URLSearchParams(window.location.search);
+    const delay = params.get("delay");
+
+    return res(ctx.delay(delay ? 2000 : 0), ctx.status(200), ctx.json(trips));
   }),
 ];
