@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { ChakraProvider, extendTheme, Container } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 import type { TTrip } from "./domain/types";
-import "./App.css";
+import "@fontsource/nunito/latin.css";
+import { Trips } from "./components/Trips";
 
 const getTrips = async (): Promise<Array<TTrip>> => {
   const response = await fetch("/api/trips");
@@ -11,20 +14,6 @@ const getTrips = async (): Promise<Array<TTrip>> => {
     throw new Error("could not load trips");
   }
 };
-
-const Trip = ({ name }: { name: string }) => (
-  <div>
-    <h2>{name}</h2>
-  </div>
-);
-
-const Trips = ({ trips }: { trips: Array<TTrip> }) => (
-  <>
-    {trips.map((trip) => (
-      <Trip key={trip.id} name={trip.name} />
-    ))}
-  </>
-);
 
 const TripSkeletons = () => <div>Loading...</div>;
 
@@ -42,11 +31,27 @@ const App = () => {
       .catch(() => console.warn("api seems unavailable - render error"));
   }, []);
 
+  const theme = extendTheme({
+    fonts: {
+      body: `'Nunito', sans-serif`,
+    },
+    styles: {
+      global: (props: any) => ({
+        body: {
+          bg: mode("gray.100", "gray.600")(props),
+        },
+      }),
+    },
+  });
+
+  // todo: consider using ChakraBaseProvider and extendBaseTheme
+
   return (
-    <>
-      <h1>Hello world</h1>
-      {isLoading ? <TripSkeletons /> : <Trips trips={trips} />}
-    </>
+    <ChakraProvider theme={theme}>
+      <Container padding={{ base: 4, sm: 8 }} maxWidth={{ lg: 1200 }}>
+        {isLoading ? <TripSkeletons /> : <Trips trips={trips} />}
+      </Container>
+    </ChakraProvider>
   );
 };
 

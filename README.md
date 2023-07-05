@@ -10,3 +10,4 @@
 ### Features
 
 - 30m to draft functionality in react
+- 2h of work on learning and applying chakra UI elements 🤯 time for a coffee break..
