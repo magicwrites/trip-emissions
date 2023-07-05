@@ -1,3 +1,11 @@
+## Some assumptions
+
+- PDF is a poor source to extract pixel perfect designs, so I have approximated a lot of colours, margins and shadow sizes
+- background images _seem_ like purposefuly darkened to enable easier reading, so I assumed filter here
+- I have adjusted rating to showcase how stars component can accomodate to various scenarios
+- I cannot identify the lovely font used in the task, so I have relied on nunito for the exercise
+- _"Changing the number of elements in the json file should change the number of elements on the page"_ could be either websocket event handling or just hot reload for development, I went with the latter
+
 ## Time spent
 
 ### Setup
@@ -11,3 +19,4 @@
 
 - 30m to draft functionality in react
 - 2h of work on learning and applying chakra UI elements 🤯 time for a coffee break..
+- 1h of work to ditch inline SVG as a solution for stars and rely on chakra icon set instead - then to implement it

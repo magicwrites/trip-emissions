@@ -1,16 +1,16 @@
 [
   {
     "id": "1",
-    "name": "European quest",
+    "name": "European Quest",
     "image": "https://images.unsplash.com/photo-1473951574080-01fe45ec8643",
     "countries": 8,
     "days": 21,
     "emissions": 810,
-    "rating": 4.7
+    "rating": 1
   },
   {
     "id": "2",
-    "name": "Autumn roadtrip",
+    "name": "Autumn Roadtrip",
     "image": "https://images.unsplash.com/photo-1543837173-6c26bc89937b",
     "countries": 1,
     "days": 14,
@@ -24,6 +24,6 @@
     "countries": 1,
     "days": 5,
     "emissions": 6.92,
-    "rating": 4.7
+    "rating": 2.7
   }
 ]

@@ -1,5 +1,6 @@
 import { Image, Box, Flex, Text } from "@chakra-ui/react";
 import type { TTrip } from "../domain/types";
+import { Stars } from "./Stars";
 
 export const Trip = (trip: TTrip) => (
   <Box rounded={16} borderWidth={8} borderColor="white" boxShadow="md">
@@ -47,6 +48,7 @@ export const Trip = (trip: TTrip) => (
           <Text fontSize={12} fontWeight={600}>
             Trip rating:
           </Text>
+          <Stars rating={trip.rating} />
           <Text fontWeight={700}>{trip.rating}</Text>
         </Flex>
       </Box>
