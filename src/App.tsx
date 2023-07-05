@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import type { TTrip } from "./domain/types";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const getTrips = async (): Promise<Array<TTrip>> => {
+  const response = await fetch("/api/trips");
+
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error("could not load trips");
+  }
+};
+
+const Trip = ({ name }: { name: string }) => (
+  <div>
+    <h2>{name}</h2>
+  </div>
+);
+
+const Trips = ({ trips }: { trips: Array<TTrip> }) => (
+  <>
+    {trips.map((trip) => (
+      <Trip key={trip.id} name={trip.name} />
+    ))}
+  </>
+);
+
+const TripSkeletons = () => <div>Loading...</div>;
+
+const App = () => {
+  // perhaps controversial usage of null as indirect "isLoading" indicator
+  // for larger scale projects in react I would rely on redux toolkit for this kind of state management
+  // but for this scale of an exercise this will be better?
+
+  const [trips, setTrips] = useState<Array<TTrip> | null>(null);
+  const isLoading = trips === null;
+
+  useEffect(() => {
+    getTrips()
+      .then(setTrips)
+      .catch(() => console.warn("api seems unavailable - render error"));
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Hello world</h1>
+      {isLoading ? <TripSkeletons /> : <Trips trips={trips} />}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
