@@ -20,3 +20,7 @@
 - 30m to draft functionality in react
 - 2h of work on learning and applying chakra UI elements 🤯 time for a coffee break..
 - 1h of work to ditch inline SVG as a solution for stars and rely on chakra icon set instead - then to implement it
+
+### Refactor
+
+- 15m to split Trip component into smaller parts

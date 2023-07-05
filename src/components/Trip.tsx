@@ -1,13 +1,17 @@
-import { Image, Box, Flex, Text } from "@chakra-ui/react";
+import { Image, Box } from "@chakra-ui/react";
+import { Rating } from "./Rating";
+import { Emissions } from "./Emissions";
+import { Title } from "./Title";
 import type { TTrip } from "../domain/types";
-import { Stars } from "./Stars";
 
 export const Trip = (trip: TTrip) => (
   <Box rounded={16} borderWidth={8} borderColor="white" boxShadow="md">
-    <Box rounded={8} overflow="hidden" position="relative">
+    <Box rounded={8} paddingX={8} overflow="hidden" position="relative">
       <Image
         objectFit="cover"
         position="absolute"
+        top={0}
+        left={0}
         width="100%"
         height="100%"
         zIndex={-1}
@@ -18,39 +22,16 @@ export const Trip = (trip: TTrip) => (
         pointerEvents="none"
       />
 
-      <Box marginTop={16} color="white" textAlign="center" fontWeight={600}>
-        <Text>{trip.name}</Text>
-        <Text fontSize={10}>
-          {trip.countries} countries, {trip.days} days
-        </Text>
+      <Box marginTop={16}>
+        <Title name={trip.name} countries={trip.countries} days={trip.days} />
       </Box>
 
-      <Box margin={2} marginX={8}>
-        <Box rounded={8} padding={3} bg="gray.700" color="white">
-          <Flex justifyContent="space-between" fontSize={12} fontWeight={600}>
-            <Text>Emissions offset:</Text>
-            <Text>
-              {trip.emissions} kg CO<sub>2</sub>e
-            </Text>
-          </Flex>
-        </Box>
+      <Box marginY={2}>
+        <Emissions emissions={trip.emissions} />
       </Box>
 
-      <Box
-        roundedTop={8}
-        marginX={8}
-        marginTop={6}
-        padding={3}
-        paddingX={6}
-        bg="white"
-      >
-        <Flex alignItems="center" justifyContent="space-between">
-          <Text fontSize={12} fontWeight={600}>
-            Trip rating:
-          </Text>
-          <Stars rating={trip.rating} />
-          <Text fontWeight={700}>{trip.rating}</Text>
-        </Flex>
+      <Box marginTop={6}>
+        <Rating rating={trip.rating} />
       </Box>
     </Box>
   </Box>
