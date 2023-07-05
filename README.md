@@ -5,6 +5,7 @@
 - I have adjusted rating to showcase how stars component can accomodate to various scenarios
 - I cannot identify the lovely font used in the task, so I have relied on nunito for the exercise
 - _"Changing the number of elements in the json file should change the number of elements on the page"_ could be either websocket event handling or just hot reload for development, I went with the latter
+- I have not found space for valuable unit tests, but I think storybook could be useful so I have introduced that instead
 
 ## Room for improvement
 
@@ -32,3 +33,4 @@
 - 30m to build delay feature, extract Skeletons from App.tsx and refine them a bit
 - 15m for more extractions from App.tsx such as api or theme, also lovely favicon
 - 15m for a final round of reflection, extracting Grid out of "List" components
+- 30m to figure out whether storybook fits the project - seems alright although a lot of dependencies are introduced

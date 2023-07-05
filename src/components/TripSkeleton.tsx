@@ -7,6 +7,7 @@ export const TripSkeleton = () => (
     borderColor="white"
     boxShadow="md"
     height={241}
+    minWidth={300}
     position="relative"
   >
     <Skeleton
