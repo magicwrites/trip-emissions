@@ -1,22 +1,13 @@
 import { useEffect, useState } from "react";
-import { ChakraProvider, extendTheme, Container } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
+import { ChakraProvider, Container } from "@chakra-ui/react";
 
+import { getTrips } from "./domain/api";
 import type { TTrip } from "./domain/types";
+import { theme } from "./domain/theme";
 import { Trips } from "./components/Trips";
 import { TripSkeletons } from "./components/TripSkeletons";
 
 import "@fontsource/nunito/latin.css";
-
-const getTrips = async (): Promise<Array<TTrip>> => {
-  const response = await fetch("/api/trips");
-
-  if (response.ok) {
-    return await response.json();
-  } else {
-    throw new Error("could not load trips");
-  }
-};
 
 const App = () => {
   // perhaps controversial usage of null as indirect "isLoading" status holder,
@@ -31,19 +22,6 @@ const App = () => {
       .then(setTrips)
       .catch(() => console.warn("api seems unavailable - todo: render error"));
   }, []);
-
-  const theme = extendTheme({
-    fonts: {
-      body: `'Nunito', sans-serif`,
-    },
-    styles: {
-      global: (props: any) => ({
-        body: {
-          bg: mode("gray.100", "gray.600")(props),
-        },
-      }),
-    },
-  });
 
   // todo: consider using ChakraBaseProvider and extendBaseTheme
 

@@ -17,6 +17,7 @@ export const TripSkeleton = () => (
       height="100%"
       zIndex={-1}
     />
+
     <Flex
       flexDirection="column"
       justifyContent="flex-end"

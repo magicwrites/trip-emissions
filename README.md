@@ -6,6 +6,11 @@
 - I cannot identify the lovely font used in the task, so I have relied on nunito for the exercise
 - _"Changing the number of elements in the json file should change the number of elements on the page"_ could be either websocket event handling or just hot reload for development, I went with the latter
 
+## Room for improvement
+
+- a lot of theme values like spacing (margins, paddings, gaps) are hardcoded and could be moved to constants or better yet: engrained in the chakra UI theme system if possible
+- very early [in the docs](https://chakra-ui.com/getting-started#chakrabaseprovider) chakra reveals minimalistic approach that can be leverage through `<ChakraBaseProvider />` - something to consider if we want to get this codebase as lean as possible
+
 ## Time spent
 
 ### Setup
@@ -21,6 +26,9 @@
 - 2h of work on learning and applying chakra UI elements 🤯 time for a coffee break..
 - 1h of work to ditch inline SVG as a solution for stars and rely on chakra icon set instead - then to implement it
 
-### Refactor
+### Refactor & refinement
 
 - 15m to split Trip component into smaller parts
+- 30m to build delay feature, extract Skeletons from App.tsx and refine them a bit
+- 15m for more extractions from App.tsx such as api or theme, also lovely favicon
+- 15m for a final round of reflection, extracting Grid out of "List" components
